@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Control Panel</title>
+    <style>
+    .flash-message {
+        color: red;
+        margin: 10px 0;
+    }
+    </style>
+    <script>
+        function updateStatus() {
+            fetch('/get_status')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').innerText = data.status ? 'ON' : 'OFF';
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        setInterval(updateStatus, 3000); // Update status every 1000 milliseconds (1 second)
+    </script>
+</head>
+<body onload="updateStatus()">
+    <h1>Control Panel</h1>
+    {% for message in get_flashed_messages() %}
+    <div class="flash-message">{{ message }}</div>
+    {% endfor %}
+    <p>Power Status: <span id="status"></span></p>
+    <form action="/toggle_relay" method="post">
+        <button type="submit">Toggle Power</button>
+    </form>
+</body>
+</html>
+
