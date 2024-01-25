@@ -20,3 +20,7 @@ RUN chmod +x /usr/src/app/entrypoint.sh
 # Start the application via the entrypoint script
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["python", "./app.py"]
+
+# Commands:
+# docker build -t power-app .
+# docker run --privileged -d -p 4000:5000 --restart=always power-app
