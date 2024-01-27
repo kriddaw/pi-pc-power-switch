@@ -6,11 +6,11 @@ import sys
 
 
 app = Flask(__name__)
-app.secret_key = 'th1$is$3cr3t'
+app.secret_key = 'th1$is$3cr3t' # change to whatevs
 
 # GPIO setup
 relay_pin = 17
-status_pin = 22
+status_pin = 22 # 3v input from atx cables
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(relay_pin, GPIO.OUT)
 GPIO.setup(status_pin, GPIO.IN)
